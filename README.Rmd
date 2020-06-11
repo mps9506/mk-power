@@ -29,13 +29,13 @@ plotdist(dist.data$ResultMeasureValue, histo = TRUE, demp = TRUE)
 
 
 ```{r echo=FALSE}
-knitr::include_graphics(here::here("plotdist.png"))
+knitr::include_graphics("https://raw.githubusercontent.com/mps9506/mk-power/master/plotdist.png")
 ```
 
 
 Try some distributions. Lognormal looks appropriate and matches literature descriptions.
 ```{r echo=FALSE}
-knitr::include_graphics(here::here("fitdist.png"))
+knitr::include_graphics("https://raw.githubusercontent.com/mps9506/mk-power/master/fitdist.png")
 ```
 
 Grab the logmean and logsd
@@ -69,6 +69,6 @@ output <- tibble(n_years = rep(7, length(samples_per_year)),
 
 
 ```{r echo=FALSE}
-knitr::include_graphics(here::here("example.png"))
+knitr::include_graphics("https://raw.githubusercontent.com/mps9506/mk-power/master/example.png")
 ```
 

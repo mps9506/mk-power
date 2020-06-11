@@ -18,11 +18,11 @@ library(fitdistrplus)
 plotdist(dist.data$ResultMeasureValue, histo = TRUE, demp = TRUE)
 ```
 
-<img src="C:/Users/michael.schramm/OneDrive - agnet.tamu.edu/Documents/Data-Analysis-Projects/mk-power/plotdist.png" width="576" />
+![](https://raw.githubusercontent.com/mps9506/mk-power/master/plotdist.png)<!-- -->
 
 Try some distributions. Lognormal looks appropriate and matches
 literature descriptions.
-<img src="C:/Users/michael.schramm/OneDrive - agnet.tamu.edu/Documents/Data-Analysis-Projects/mk-power/fitdist.png" width="576" />
+![](https://raw.githubusercontent.com/mps9506/mk-power/master/fitdist.png)<!-- -->
 
 Grab the logmean and logsd
 
@@ -54,4 +54,4 @@ output <- tibble(n_years = rep(7, length(samples_per_year)),
                                                .x, .y)))
 ```
 
-<img src="C:/Users/michael.schramm/OneDrive - agnet.tamu.edu/Documents/Data-Analysis-Projects/mk-power/example.png" width="800" />
+![](https://raw.githubusercontent.com/mps9506/mk-power/master/example.png)<!-- -->
