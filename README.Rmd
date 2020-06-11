@@ -1,0 +1,74 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Script to estimate statistical power using Kendall Test for trend on log-normal *E. coli* concentrations. Full script is in the `scripts` folder.
+
+Estimate and fit distribution to the empirical data:
+```{r eval=FALSE}
+
+library(fitdistrplus)
+
+plotdist(dist.data$ResultMeasureValue, histo = TRUE, demp = TRUE)
+
+```
+
+
+
+```{r echo=FALSE}
+knitr::include_graphics(here::here("plotdist.png"))
+```
+
+
+Try some distributions. Lognormal looks appropriate and matches literature descriptions.
+```{r echo=FALSE}
+knitr::include_graphics(here::here("fitdist.png"))
+```
+
+Grab the logmean and logsd
+```{r eval=FALSE}
+fln <- fitdist(dist.data$ResultMeasureValue, "lnorm")
+summary(fln) ## fln looks most reasonable by plot and AIC
+
+## get the sample distribution parameters
+mu <- fln$estimate["meanlog"]
+sd <- fln$estimate["sdlog"]
+```
+
+
+Generate samples, test, and repeat:
+```{r eval=FALSE}
+## number of resamples
+r <- 10000
+
+## percent change to detect
+percent_change = -20
+
+samples_per_year <- c(2,3,4,5,6,7,8,10)
+
+
+output <- tibble(n_years = rep(7, length(samples_per_year)),
+                 samples_per_year = samples_per_year) %>%
+  mutate(power = furrr::future_map2(n_years, samples_per_year,
+                                    ~power_ken(r, mu, percent_change,
+                                               .x, .y)))
+```
+
+
+```{r echo=FALSE}
+knitr::include_graphics(here::here("example.png"))
+```
+
